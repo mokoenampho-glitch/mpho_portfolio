@@ -1,54 +1,33 @@
 import { ExternalLink, Github } from 'lucide-react';
 import { Card } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
+import teachoraProject from '@/assets/teachora-project.png';
+import hervoiceProject from '@/assets/hervoice-project.png';
+import elysianProject from '@/assets/elysian-project.png';
 
 const Projects = () => {
   const projects = [
     {
-      title: 'E-Commerce Platform',
-      description: 'A full-stack e-commerce solution with real-time inventory management and secure payment processing.',
-      tags: ['React', 'Node.js', 'MongoDB', 'Stripe'],
-      image: 'https://images.unsplash.com/photo-1557821552-17105176677c?w=800&q=80',
+      title: 'Teachora™',
+      description: 'A paperless school communication app designed to improve engagement between teachers and parents. The app provides a central hub for announcements, notices, and private communication.',
+      tags: ['React Native', 'Firebase', 'UI/UX', 'Mobile'],
+      image: teachoraProject,
       github: '#',
       live: '#',
     },
     {
-      title: 'Task Management App',
-      description: 'Collaborative project management tool with real-time updates and team communication features.',
-      tags: ['TypeScript', 'React', 'Firebase', 'Tailwind'],
-      image: 'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=800&q=80',
+      title: 'Her Voice™',
+      description: 'Women first, women strong, women safe. A safety and empowerment app featuring panic alerts, live location sharing, and daily affirmations for women.',
+      tags: ['React Native', 'Geolocation', 'Real-time', 'Safety'],
+      image: hervoiceProject,
       github: '#',
       live: '#',
     },
     {
-      title: 'Portfolio Analytics',
-      description: 'Advanced analytics dashboard for tracking portfolio performance and market trends.',
-      tags: ['Next.js', 'Chart.js', 'PostgreSQL', 'API'],
-      image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&q=80',
-      github: '#',
-      live: '#',
-    },
-    {
-      title: 'Social Media Dashboard',
-      description: 'Unified dashboard for managing multiple social media accounts with scheduling and analytics.',
-      tags: ['React', 'Express', 'OAuth', 'Charts'],
-      image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&q=80',
-      github: '#',
-      live: '#',
-    },
-    {
-      title: 'AI Content Generator',
-      description: 'AI-powered tool for generating creative content with customizable parameters and templates.',
-      tags: ['Python', 'OpenAI', 'FastAPI', 'React'],
-      image: 'https://images.unsplash.com/photo-1677442136019-21780ecad995?w=800&q=80',
-      github: '#',
-      live: '#',
-    },
-    {
-      title: 'Fitness Tracker',
-      description: 'Mobile-responsive fitness tracking app with workout plans and progress visualization.',
-      tags: ['React Native', 'Firebase', 'Charts', 'UI/UX'],
-      image: 'https://images.unsplash.com/photo-1476480862126-209bfaa8edc8?w=800&q=80',
+      title: 'Elysian Lab',
+      description: 'Where beauty meets ease. A comprehensive salon booking app with service scheduling, team management, and seamless appointment booking experience.',
+      tags: ['React Native', 'Booking System', 'UI/UX', 'Mobile'],
+      image: elysianProject,
       github: '#',
       live: '#',
     },
