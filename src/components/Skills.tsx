@@ -1,4 +1,4 @@
-import { Card } from '@/components/ui/card';
+import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/card';
 import {
   Code2,
   Palette,
@@ -11,86 +11,91 @@ import {
 const Skills = () => {
   const skillCategories = [
     {
-      icon: Code2,
+      icon: <Code2 className="w-6 h-6" />,
       title: 'Frontend Development',
       skills: ['React', 'TypeScript', 'Next.js', 'Tailwind CSS', 'Vue.js', 'HTML/CSS'],
     },
     {
-      icon: Database,
+      icon: <Database className="w-6 h-6" />,
       title: 'Backend Development',
       skills: ['Node.js', 'Express', 'Python', 'PostgreSQL', 'MongoDB', 'REST APIs'],
     },
     {
-      icon: Palette,
+      icon: <Palette className="w-6 h-6" />,
       title: 'Design',
       skills: ['Figma', 'Adobe XD', 'UI/UX', 'Prototyping', 'Design Systems', 'Responsive Design'],
     },
     {
-      icon: Cloud,
+      icon: <Cloud className="w-6 h-6" />,
       title: 'Cloud & DevOps',
       skills: ['AWS', 'Docker', 'CI/CD', 'Vercel', 'Netlify', 'GitHub Actions'],
     },
     {
-      icon: Smartphone,
+      icon: <Smartphone className="w-6 h-6" />,
       title: 'Mobile Development',
       skills: ['React Native', 'Flutter', 'iOS', 'Android', 'Progressive Web Apps', 'Responsive'],
     },
     {
-      icon: GitBranch,
+      icon: <GitBranch className="w-6 h-6" />,
       title: 'Tools & Others',
       skills: ['Git', 'VS Code', 'Postman', 'Agile', 'Testing', 'Documentation'],
     },
   ];
 
   return (
-    <section id="skills" className="py-24 bg-background">
-      <div className="container mx-auto px-6">
-        <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold mb-4">
-            Skills & <span className="gradient-text">Expertise</span>
-          </h2>
-          <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
-            A comprehensive overview of my technical skills and areas of expertise
+    <section id="skills" className="py-32 relative">
+      <div className="absolute inset-0 mesh-gradient opacity-30" />
+      <div className="container mx-auto px-6 lg:px-8 relative">
+        <div className="text-center space-y-6 mb-20">
+          <h2 className="text-5xl md:text-6xl font-bold tracking-tight">Skills & Expertise</h2>
+          <p className="text-xl text-muted-foreground/90 max-w-3xl mx-auto">
+            Technologies and tools I work with to bring ideas to life
           </p>
         </div>
-
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
           {skillCategories.map((category, index) => (
-            <Card
-              key={index}
-              className="p-8 bg-card hover:bg-card/80 transition-all duration-300 hover:shadow-lg hover:-translate-y-1 border-border"
-            >
-              <div className="mb-6 text-primary">
-                <category.icon size={40} />
-              </div>
-              <h3 className="text-2xl font-bold mb-4">{category.title}</h3>
-              <div className="flex flex-wrap gap-2">
-                {category.skills.map((skill) => (
-                  <span
-                    key={skill}
-                    className="text-sm px-3 py-1 rounded-full bg-secondary text-foreground border border-border hover:border-primary hover:text-primary transition-colors"
-                  >
-                    {skill}
-                  </span>
-                ))}
-              </div>
+            <Card key={index} className="p-8 hover:scale-105 transition-transform duration-300">
+              <CardHeader className="p-0 pb-6">
+                <div className="flex items-center gap-4 mb-6">
+                  <div className="w-12 h-12 rounded-2xl bg-primary/10 flex items-center justify-center shadow-glow">
+                    {category.icon}
+                  </div>
+                  <CardTitle className="text-2xl">{category.title}</CardTitle>
+                </div>
+              </CardHeader>
+              <CardContent className="p-0">
+                <div className="flex flex-wrap gap-3">
+                  {category.skills.map((skill, skillIndex) => (
+                    <span
+                      key={skillIndex}
+                      className="px-4 py-2 text-sm font-medium rounded-full glass-card"
+                    >
+                      {skill}
+                    </span>
+                  ))}
+                </div>
+              </CardContent>
             </Card>
           ))}
         </div>
-
-        <div className="mt-16 text-center">
-          <Card className="inline-block p-8 bg-gradient-to-br from-primary/10 to-accent/10 border-primary/20">
-            <p className="text-lg mb-4">
-              <span className="font-bold gradient-text text-2xl">5+</span> Years of Experience
-            </p>
-            <p className="text-lg mb-4">
-              <span className="font-bold gradient-text text-2xl">50+</span> Projects Completed
-            </p>
-            <p className="text-lg">
-              <span className="font-bold gradient-text text-2xl">30+</span> Happy Clients
-            </p>
-          </Card>
-        </div>
+        
+        <Card className="p-12 shadow-elevated bg-gradient-to-br from-primary/5 to-accent/5">
+          <div className="grid md:grid-cols-3 gap-12">
+            <div className="text-center space-y-3">
+              <div className="text-6xl font-bold gradient-text">3+</div>
+              <div className="text-lg text-muted-foreground/80">Years Experience</div>
+            </div>
+            <div className="text-center space-y-3">
+              <div className="text-6xl font-bold gradient-text">50+</div>
+              <div className="text-lg text-muted-foreground/80">Projects Completed</div>
+            </div>
+            <div className="text-center space-y-3">
+              <div className="text-6xl font-bold gradient-text">25+</div>
+              <div className="text-lg text-muted-foreground/80">Happy Clients</div>
+            </div>
+          </div>
+        </Card>
       </div>
     </section>
   );

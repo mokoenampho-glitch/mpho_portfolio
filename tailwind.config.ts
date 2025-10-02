@@ -97,7 +97,10 @@ export default {
         "fade-in": "fade-in 0.8s ease-out forwards",
       },
       fontFamily: {
-        sans: ['Inter', 'system-ui', '-apple-system', 'sans-serif'],
+        sans: ['-apple-system', 'BlinkMacSystemFont', 'SF Pro Display', 'SF Pro Text', 'Helvetica Neue', 'system-ui', 'sans-serif'],
+      },
+      backdropBlur: {
+        xs: '2px',
       },
     },
   },

@@ -32,51 +32,44 @@ const Navigation = () => {
 
   return (
     <nav
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isScrolled ? 'bg-background/80 backdrop-blur-lg border-b border-border' : 'bg-transparent'
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
+        isScrolled ? 'glass-card shadow-elevated' : 'bg-transparent'
       }`}
     >
-      <div className="container mx-auto px-6 py-4">
-        <div className="flex items-center justify-between">
+      <div className="container mx-auto px-6 lg:px-8">
+        <div className="flex items-center justify-between h-20">
           <a
             href="#home"
             onClick={(e) => {
               e.preventDefault();
               scrollToSection('#home');
             }}
-            className="text-2xl font-bold gradient-text"
+            className="text-2xl font-bold gradient-text tracking-tight"
           >
             MM
           </a>
 
           {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center gap-8">
+          <div className="hidden md:flex items-center space-x-1">
             {navItems.map((item) => (
-              <a
-                key={item.label}
-                href={item.href}
-                onClick={(e) => {
-                  e.preventDefault();
-                  scrollToSection(item.href);
-                }}
-                className="text-foreground/80 hover:text-foreground transition-colors font-medium"
+              <button
+                key={item.href}
+                onClick={() => scrollToSection(item.href)}
+                className="px-4 py-2 text-foreground/70 hover:text-foreground hover:bg-accent/10 rounded-lg transition-all duration-300 font-medium"
               >
                 {item.label}
-              </a>
+              </button>
             ))}
-            <Button
-              variant="default"
-              onClick={() => scrollToSection('#contact')}
-              className="bg-primary hover:bg-primary/90 glow-effect"
-            >
+            <Button onClick={() => scrollToSection('#contact')} size="sm" className="ml-4">
               Get in Touch
             </Button>
           </div>
 
           {/* Mobile Menu Button */}
           <button
-            className="md:hidden text-foreground"
+            className="md:hidden text-foreground p-2"
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+            aria-label="Toggle menu"
           >
             {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
           </button>
@@ -84,27 +77,21 @@ const Navigation = () => {
 
         {/* Mobile Navigation */}
         {isMobileMenuOpen && (
-          <div className="md:hidden mt-4 pb-4 flex flex-col gap-4">
-            {navItems.map((item) => (
-              <a
-                key={item.label}
-                href={item.href}
-                onClick={(e) => {
-                  e.preventDefault();
-                  scrollToSection(item.href);
-                }}
-                className="text-foreground/80 hover:text-foreground transition-colors font-medium py-2"
-              >
-                {item.label}
-              </a>
-            ))}
-            <Button
-              variant="default"
-              onClick={() => scrollToSection('#contact')}
-              className="bg-primary hover:bg-primary/90 w-full"
-            >
-              Get in Touch
-            </Button>
+          <div className="md:hidden absolute top-20 left-0 right-0 glass-card mx-4 rounded-2xl shadow-elevated">
+            <div className="p-6 flex flex-col space-y-2">
+              {navItems.map((item) => (
+                <button
+                  key={item.href}
+                  onClick={() => scrollToSection(item.href)}
+                  className="px-4 py-3 text-foreground/70 hover:text-foreground hover:bg-accent/10 rounded-lg transition-all duration-300 text-left font-medium"
+                >
+                  {item.label}
+                </button>
+              ))}
+              <Button onClick={() => scrollToSection('#contact')} className="w-full mt-4">
+                Get in Touch
+              </Button>
+            </div>
           </div>
         )}
       </div>

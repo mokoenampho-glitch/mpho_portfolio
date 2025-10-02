@@ -1,5 +1,5 @@
 import { ExternalLink, Github } from 'lucide-react';
-import { Card } from '@/components/ui/card';
+import { Card, CardHeader, CardTitle, CardDescription, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import teachoraProject from '@/assets/teachora-project.png';
 import hervoiceProject from '@/assets/hervoice-project.png';
@@ -34,71 +34,56 @@ const Projects = () => {
   ];
 
   return (
-    <section id="projects" className="py-24 bg-secondary/30">
-      <div className="container mx-auto px-6">
-        <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold mb-4">
-            Featured <span className="gradient-text">Projects</span>
-          </h2>
-          <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
-            A selection of my recent work showcasing various technologies and creative solutions
+    <section id="projects" className="py-32 relative">
+      <div className="container mx-auto px-6 lg:px-8">
+        <div className="text-center space-y-6 mb-20">
+          <h2 className="text-5xl md:text-6xl font-bold tracking-tight">Featured Projects</h2>
+          <p className="text-xl text-muted-foreground/90 max-w-3xl mx-auto">
+            A selection of my recent work showcasing diverse skills and creative solutions
           </p>
         </div>
-
+        
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
           {projects.map((project, index) => (
-            <Card
-              key={index}
-              className="overflow-hidden bg-card hover:shadow-xl transition-all duration-300 group hover:-translate-y-2 border-border"
-            >
-              <div className="relative overflow-hidden aspect-video">
+            <Card key={index} className="overflow-hidden group hover:scale-[1.02] transition-all duration-500">
+              <div className="aspect-video relative overflow-hidden bg-muted">
                 <img
                   src={project.image}
                   alt={project.title}
-                  className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
+                  className="object-cover w-full h-full transition-all duration-500 group-hover:scale-110"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-background/90 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end justify-center pb-4 gap-3">
-                  <Button
-                    size="sm"
-                    variant="outline"
-                    className="border-primary text-primary hover:bg-primary hover:text-primary-foreground"
-                    asChild
-                  >
-                    <a href={project.github} target="_blank" rel="noopener noreferrer">
-                      <Github size={16} className="mr-2" />
-                      Code
-                    </a>
-                  </Button>
-                  <Button
-                    size="sm"
-                    className="bg-primary hover:bg-primary/90"
-                    asChild
-                  >
-                    <a href={project.live} target="_blank" rel="noopener noreferrer">
-                      <ExternalLink size={16} className="mr-2" />
-                      Live
-                    </a>
-                  </Button>
-                </div>
+                <div className="absolute inset-0 bg-gradient-to-t from-background/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
               </div>
-              <div className="p-6">
-                <h3 className="text-xl font-bold mb-3 group-hover:text-primary transition-colors">
-                  {project.title}
-                </h3>
-                <p className="text-muted-foreground mb-4 line-clamp-2">
-                  {project.description}
-                </p>
+              <CardHeader className="space-y-4">
+                <CardTitle className="text-2xl">{project.title}</CardTitle>
+                <CardDescription className="text-base leading-relaxed">{project.description}</CardDescription>
+              </CardHeader>
+              <CardContent className="space-y-6">
                 <div className="flex flex-wrap gap-2">
-                  {project.tags.map((tag) => (
+                  {project.tags.map((tag, tagIndex) => (
                     <span
-                      key={tag}
-                      className="text-xs px-3 py-1 rounded-full bg-primary/10 text-primary border border-primary/20"
+                      key={tagIndex}
+                      className="px-4 py-2 text-xs font-medium rounded-full glass-card"
                     >
                       {tag}
                     </span>
                   ))}
                 </div>
-              </div>
+                <div className="flex gap-4">
+                  <Button variant="outline" size="sm" asChild className="flex-1">
+                    <a href={project.github} target="_blank" rel="noopener noreferrer">
+                      <Github className="w-4 h-4 mr-2" />
+                      Code
+                    </a>
+                  </Button>
+                  <Button size="sm" asChild className="flex-1">
+                    <a href={project.live} target="_blank" rel="noopener noreferrer">
+                      <ExternalLink className="w-4 h-4 mr-2" />
+                      Demo
+                    </a>
+                  </Button>
+                </div>
+              </CardContent>
             </Card>
           ))}
         </div>
