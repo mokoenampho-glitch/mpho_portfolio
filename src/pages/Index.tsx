@@ -2,7 +2,9 @@ import Navigation from '@/components/Navigation';
 import Hero from '@/components/Hero';
 import About from '@/components/About';
 import Projects from '@/components/Projects';
-import Skills from '@/components/Skills';
+import WorkExperience from '@/components/WorkExperience';
+import Knowledge from '@/components/Knowledge';
+import Education from '@/components/Education';
 import Contact from '@/components/Contact';
 import Footer from '@/components/Footer';
 import ParticleBackground from '@/components/ParticleBackground';
@@ -16,7 +18,9 @@ const Index = () => {
         <Hero />
         <About />
         <Projects />
-        <Skills />
+        <WorkExperience />
+        <Knowledge />
+        <Education />
         <Contact />
         <Footer />
       </div>

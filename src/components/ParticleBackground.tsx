@@ -55,11 +55,30 @@ const ParticleBackground = () => {
         if (particle.y < 0) particle.y = canvas.height;
         if (particle.y > canvas.height) particle.y = 0;
 
-        // Draw particle
+        // Draw particle - use pink accent or dark/white based on theme
+        const isDark = document.documentElement.classList.contains('dark');
+        const isAccent = Math.random() > 0.7; // 30% pink particles
+        
         ctx.beginPath();
         ctx.arc(particle.x, particle.y, particle.size, 0, Math.PI * 2);
-        ctx.fillStyle = `rgba(197, 172, 142, ${particle.opacity})`;
+        
+        if (isAccent) {
+          // Pink accent particles
+          ctx.fillStyle = isDark 
+            ? `rgba(255, 51, 102, ${particle.opacity * 0.8})` 
+            : `rgba(255, 51, 102, ${particle.opacity * 0.6})`;
+          ctx.shadowBlur = 8;
+          ctx.shadowColor = 'rgba(255, 51, 102, 0.5)';
+        } else {
+          // Black or white particles based on theme
+          ctx.fillStyle = isDark 
+            ? `rgba(0, 0, 0, ${particle.opacity * 0.3})` 
+            : `rgba(255, 255, 255, ${particle.opacity * 0.5})`;
+          ctx.shadowBlur = 0;
+        }
+        
         ctx.fill();
+        ctx.shadowBlur = 0;
 
         // Draw connections
         particlesRef.current.slice(i + 1).forEach((otherParticle) => {
@@ -71,8 +90,10 @@ const ParticleBackground = () => {
             ctx.beginPath();
             ctx.moveTo(particle.x, particle.y);
             ctx.lineTo(otherParticle.x, otherParticle.y);
-            const opacity = (1 - distance / 150) * 0.12;
-            ctx.strokeStyle = `rgba(197, 172, 142, ${opacity})`;
+            const opacity = (1 - distance / 150) * (isDark ? 0.08 : 0.12);
+            ctx.strokeStyle = isDark
+              ? `rgba(197, 172, 142, ${opacity})`
+              : `rgba(255, 255, 255, ${opacity})`;
             ctx.lineWidth = 0.5;
             ctx.stroke();
           }

@@ -13,14 +13,20 @@ const Contact = () => {
     {
       icon: <Mail className="w-5 h-5" />,
       title: 'Email',
-      content: 'mpho@example.com',
-      href: 'mailto:mpho@example.com',
+      content: 'mokoena_mpho@icloud.com',
+      href: 'mailto:mokoena_mpho@icloud.com',
+    },
+    {
+      icon: <Mail className="w-5 h-5" />,
+      title: 'Email',
+      content: 'mokoena_mpho@arithai.com',
+      href: 'mailto:mokoena_mpho@arithai.com',
     },
     {
       icon: <Phone className="w-5 h-5" />,
       title: 'Phone',
-      content: '+27 123 456 7890',
-      href: 'tel:+27123456789',
+      content: '+27 81 210 7395',
+      href: 'tel:+27812107395',
     },
     {
       icon: <MapPin className="w-5 h-5" />,

@@ -1,5 +1,6 @@
 import { ChevronDown, Github, Linkedin, Mail } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import profilePhoto from '@/assets/profile-photo.png';
 
 const Hero = () => {
   const scrollToSection = (href: string) => {
@@ -10,13 +11,22 @@ const Hero = () => {
   };
 
   return (
-    <section id="home" className="min-h-screen flex items-center justify-center relative overflow-hidden">
+    <section id="home" className="min-h-screen flex items-center justify-center relative overflow-hidden pt-24">
       {/* Mesh gradient background */}
       <div className="absolute inset-0 mesh-gradient" />
       <div className="absolute inset-0 bg-gradient-to-b from-transparent via-background/50 to-background" />
       
       <div className="container mx-auto px-6 lg:px-8 relative z-10">
         <div className="max-w-5xl mx-auto text-center space-y-10 animate-fade-in">
+          <div className="flex justify-center mb-8">
+            <div className="w-48 h-48 rounded-[2.5rem] overflow-hidden glass-card p-2">
+              <img 
+                src={profilePhoto} 
+                alt="Mpho Mokoena" 
+                className="w-full h-full object-cover rounded-[2rem]"
+              />
+            </div>
+          </div>
           <div className="space-y-4">
             <h1 className="text-6xl md:text-8xl font-bold leading-tight tracking-tight">
               Hi, I'm <span className="gradient-text">Mpho Mokoena</span>
@@ -57,7 +67,7 @@ const Hero = () => {
               <Linkedin className="w-7 h-7" />
             </a>
             <a
-              href="mailto:mpho@example.com"
+              href="mailto:mokoena_mpho@icloud.com"
               className="text-foreground/50 hover:text-primary transition-all duration-300 hover:scale-110"
             >
               <Mail className="w-7 h-7" />
