@@ -1,0 +1,690 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Mpho Mokoena - Creative Developer & Designer specializing in modern web and mobile applications with a focus on user experience.">
+    <title>Mpho Mokoena | Creative Developer & Designer</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --background: 30 15% 92%;
+            --foreground: 30 15% 25%;
+            --card: 30 15% 95%;
+            --card-foreground: 30 15% 20%;
+            --primary: 30 25% 55%;
+            --primary-foreground: 0 0% 100%;
+            --secondary: 30 15% 85%;
+            --secondary-foreground: 30 15% 25%;
+            --muted: 30 15% 88%;
+            --muted-foreground: 30 15% 40%;
+            --accent: 348 100% 65%;
+            --accent-foreground: 0 0% 100%;
+            --border: 30 15% 82%;
+            --input: 30 15% 82%;
+            --ring: 30 25% 55%;
+            --gradient-overlay: linear-gradient(135deg, hsl(30 15% 92% / 0.4), hsl(30 25% 55% / 0.2));
+            --gradient-mesh: radial-gradient(at 20% 30%, hsl(30 15% 95% / 0.5) 0px, transparent 50%),
+                             radial-gradient(at 80% 70%, hsl(30 25% 55% / 0.4) 0px, transparent 50%),
+                             radial-gradient(at 50% 50%, hsl(348 100% 65% / 0.1) 0px, transparent 50%);
+        }
+
+        .dark {
+            --background: 0 0% 8%;
+            --foreground: 0 0% 95%;
+            --card: 0 0% 12%;
+            --card-foreground: 0 0% 95%;
+            --primary: 30 25% 55%;
+            --primary-foreground: 0 0% 100%;
+            --secondary: 0 0% 18%;
+            --secondary-foreground: 0 0% 95%;
+            --muted: 0 0% 20%;
+            --muted-foreground: 0 0% 65%;
+            --accent: 348 100% 65%;
+            --accent-foreground: 0 0% 100%;
+            --border: 0 0% 25%;
+            --input: 0 0% 25%;
+            --ring: 30 25% 55%;
+            --gradient-overlay: linear-gradient(135deg, hsl(0 0% 8% / 0.6), hsl(0 0% 15% / 0.4));
+            --gradient-mesh: radial-gradient(at 20% 30%, hsl(0 0% 15% / 0.5) 0px, transparent 50%),
+                             radial-gradient(at 80% 70%, hsl(30 25% 55% / 0.3) 0px, transparent 50%),
+                             radial-gradient(at 50% 50%, hsl(348 100% 65% / 0.15) 0px, transparent 50%);
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            background: hsl(var(--background));
+            color: hsl(var(--foreground));
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 1.5rem;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 1000;
+            background: hsl(var(--background) / 0.7);
+            backdrop-filter: blur(12px);
+            border: 1px solid hsl(var(--border) / 0.3);
+            border-radius: 2rem;
+            padding: 0.75rem 1.5rem;
+            box-shadow: 0 8px 32px -8px hsl(var(--foreground) / 0.1);
+        }
+
+        nav ul {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+            align-items: center;
+        }
+
+        nav a {
+            color: hsl(var(--muted-foreground));
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: hsl(var(--accent));
+        }
+
+        .theme-toggle {
+            background: hsl(var(--muted));
+            border: none;
+            border-radius: 50%;
+            width: 36px;
+            height: 36px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s;
+        }
+
+        .theme-toggle:hover {
+            background: hsl(var(--accent));
+            color: hsl(var(--accent-foreground));
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            padding-top: 8rem;
+            padding-bottom: 4rem;
+        }
+
+        .mesh-gradient {
+            position: absolute;
+            inset: 0;
+            background: var(--gradient-mesh);
+            opacity: 0.6;
+        }
+
+        .profile-image {
+            width: 12rem;
+            height: 12rem;
+            border-radius: 2.5rem;
+            overflow: hidden;
+            background: linear-gradient(135deg, hsl(var(--primary) / 0.2), hsl(var(--accent) / 0.1));
+            backdrop-filter: blur(4px);
+            padding: 0.5rem;
+            border: 1px solid hsl(var(--foreground) / 0.1);
+            margin: 0 auto 2rem;
+        }
+
+        .profile-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 2rem;
+            mix-blend-mode: luminosity;
+            opacity: 0.9;
+        }
+
+        .gradient-text {
+            background: linear-gradient(135deg, hsl(var(--primary)), hsl(var(--accent)));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .glass-card {
+            background: hsl(var(--card) / 0.6);
+            backdrop-filter: blur(10px);
+            border: 1px solid hsl(var(--border) / 0.3);
+            border-radius: 1.5rem;
+            padding: 2rem;
+            box-shadow: 0 8px 32px -8px hsl(var(--foreground) / 0.1);
+        }
+
+        .paint-overlay {
+            position: relative;
+            background: linear-gradient(135deg, hsl(var(--card) / 0.8), hsl(var(--muted) / 0.6));
+            backdrop-filter: blur(12px);
+            border: 1px solid hsl(var(--border) / 0.4);
+            border-radius: 1.5rem;
+            padding: 2rem;
+            overflow: hidden;
+        }
+
+        .paint-overlay::before {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            background: linear-gradient(135deg, hsl(var(--accent) / 0.1), transparent 50%);
+            border-radius: 1.5rem;
+            z-index: -1;
+        }
+
+        /* Sections */
+        section {
+            padding: 6rem 0;
+            position: relative;
+        }
+
+        h1 {
+            font-size: 4rem;
+            font-weight: 700;
+            line-height: 1.1;
+            margin-bottom: 1rem;
+        }
+
+        h2 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 3rem;
+            text-align: center;
+        }
+
+        h3 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 1rem 2rem;
+            border-radius: 0.75rem;
+            font-weight: 500;
+            text-decoration: none;
+            transition: all 0.3s;
+            cursor: pointer;
+            border: none;
+            font-size: 1rem;
+        }
+
+        .btn-primary {
+            background: hsl(var(--accent));
+            color: hsl(var(--accent-foreground));
+        }
+
+        .btn-primary:hover {
+            background: hsl(var(--accent) / 0.9);
+            box-shadow: 0 8px 24px -8px hsl(var(--accent) / 0.5);
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 2px solid hsl(var(--border));
+            color: hsl(var(--foreground));
+        }
+
+        .btn-outline:hover {
+            background: hsl(var(--muted));
+        }
+
+        /* Grid Layouts */
+        .grid {
+            display: grid;
+            gap: 2rem;
+        }
+
+        .grid-2 {
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        }
+
+        .grid-3 {
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        }
+
+        /* Skill Circles */
+        .skill-circle {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: hsl(var(--accent));
+            box-shadow: 0 0 12px hsl(var(--accent) / 0.5);
+        }
+
+        .skill-grid {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+            margin-top: 1rem;
+        }
+
+        /* Social Links */
+        .social-links {
+            display: flex;
+            gap: 2rem;
+            justify-content: center;
+            margin-top: 2rem;
+        }
+
+        .social-links a {
+            color: hsl(var(--muted-foreground));
+            transition: all 0.3s;
+        }
+
+        .social-links a:hover {
+            color: hsl(var(--accent));
+            transform: scale(1.1);
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 2rem 0;
+            border-top: 1px solid hsl(var(--border));
+            color: hsl(var(--muted-foreground));
+        }
+
+        /* Particle Canvas */
+        #particles {
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            z-index: 0;
+            opacity: 0.6;
+        }
+
+        .content {
+            position: relative;
+            z-index: 10;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            h1 { font-size: 2.5rem; }
+            h2 { font-size: 2rem; }
+            nav ul { gap: 1rem; font-size: 0.875rem; }
+            .grid-2, .grid-3 { grid-template-columns: 1fr; }
+        }
+
+        .scroll-indicator {
+            position: absolute;
+            bottom: 3rem;
+            left: 50%;
+            transform: translateX(-50%);
+            background: hsl(var(--card) / 0.6);
+            backdrop-filter: blur(10px);
+            padding: 1rem;
+            border-radius: 50%;
+            border: 1px solid hsl(var(--border) / 0.3);
+            cursor: pointer;
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateX(-50%) translateY(0); }
+            50% { transform: translateX(-50%) translateY(-10px); }
+        }
+    </style>
+</head>
+<body>
+    <canvas id="particles"></canvas>
+    
+    <div class="content">
+        <!-- Navigation -->
+        <nav>
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#experience">Experience</a></li>
+                <li><a href="#knowledge">Knowledge</a></li>
+                <li><a href="#education">Education</a></li>
+                <li><a href="#contact">Contact</a></li>
+                <li><button class="theme-toggle" id="themeToggle">🌙</button></li>
+            </ul>
+        </nav>
+
+        <!-- Hero Section -->
+        <section id="home" class="hero">
+            <div class="mesh-gradient"></div>
+            <div class="container" style="text-align: center; position: relative; z-index: 10;">
+                <div class="profile-image">
+                    <img src="../src/assets/profile-illustration.jpg" alt="Mpho Mokoena">
+                </div>
+                <h1>Hi, I'm <span class="gradient-text">Mpho Mokoena</span></h1>
+                <h2 style="font-size: 2rem; font-weight: 300; color: hsl(var(--muted-foreground)); margin-bottom: 2rem;">Creative Developer & Designer</h2>
+                <p style="font-size: 1.25rem; color: hsl(var(--muted-foreground)); max-width: 600px; margin: 0 auto 2rem;">
+                    I craft beautiful, functional digital experiences that make a difference. 
+                    Specializing in modern web and mobile applications with a focus on user experience.
+                </p>
+                <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+                    <a href="#projects" class="btn btn-primary">View My Work</a>
+                    <a href="#contact" class="btn btn-outline">Contact Me</a>
+                </div>
+                <div class="social-links">
+                    <a href="https://github.com" target="_blank">
+                        <svg width="28" height="28" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+                    </a>
+                    <a href="https://linkedin.com" target="_blank">
+                        <svg width="28" height="28" fill="currentColor" viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+                    </a>
+                    <a href="mailto:mokoena_mpho@icloud.com">
+                        <svg width="28" height="28" fill="currentColor" viewBox="0 0 24 24"><path d="M0 3v18h24v-18h-24zm21.518 2l-9.518 7.713-9.518-7.713h19.036zm-19.518 14v-11.817l10 8.104 10-8.104v11.817h-20z"/></svg>
+                    </a>
+                </div>
+            </div>
+            <div class="scroll-indicator">
+                <svg width="24" height="24" fill="currentColor" viewBox="0 0 24 24"><path d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z"/></svg>
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section id="about">
+            <div class="container">
+                <h2>About Me</h2>
+                <div class="glass-card" style="max-width: 800px; margin: 0 auto;">
+                    <p style="font-size: 1.125rem; line-height: 1.8;">
+                        I'm a passionate developer and designer with a keen eye for creating intuitive, 
+                        beautiful digital experiences. With expertise spanning web and mobile development, 
+                        I bring ideas to life through clean code and thoughtful design. My approach combines 
+                        technical excellence with creative problem-solving to deliver solutions that not only 
+                        look great but work seamlessly.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Projects Section -->
+        <section id="projects">
+            <div class="container">
+                <h2>Featured Projects</h2>
+                <div class="grid grid-3">
+                    <div class="paint-overlay">
+                        <h3>Elysian Project</h3>
+                        <p style="color: hsl(var(--muted-foreground)); margin: 1rem 0;">A modern web application with beautiful UI/UX design and seamless functionality.</p>
+                        <div style="display: flex; gap: 0.5rem; flex-wrap: wrap; margin-top: 1rem;">
+                            <span style="background: hsl(var(--accent) / 0.2); padding: 0.25rem 0.75rem; border-radius: 0.5rem; font-size: 0.875rem;">React</span>
+                            <span style="background: hsl(var(--accent) / 0.2); padding: 0.25rem 0.75rem; border-radius: 0.5rem; font-size: 0.875rem;">TypeScript</span>
+                            <span style="background: hsl(var(--accent) / 0.2); padding: 0.25rem 0.75rem; border-radius: 0.5rem; font-size: 0.875rem;">Tailwind</span>
+                        </div>
+                    </div>
+                    <div class="paint-overlay">
+                        <h3>HerVoice Platform</h3>
+                        <p style="color: hsl(var(--muted-foreground)); margin: 1rem 0;">Empowering platform designed to amplify voices and create meaningful connections.</p>
+                        <div style="display: flex; gap: 0.5rem; flex-wrap: wrap; margin-top: 1rem;">
+                            <span style="background: hsl(var(--accent) / 0.2); padding: 0.25rem 0.75rem; border-radius: 0.5rem; font-size: 0.875rem;">Next.js</span>
+                            <span style="background: hsl(var(--accent) / 0.2); padding: 0.25rem 0.75rem; border-radius: 0.5rem; font-size: 0.875rem;">Node.js</span>
+                        </div>
+                    </div>
+                    <div class="paint-overlay">
+                        <h3>Teachora</h3>
+                        <p style="color: hsl(var(--muted-foreground)); margin: 1rem 0;">Educational platform revolutionizing online learning experiences.</p>
+                        <div style="display: flex; gap: 0.5rem; flex-wrap: wrap; margin-top: 1rem;">
+                            <span style="background: hsl(var(--accent) / 0.2); padding: 0.25rem 0.75rem; border-radius: 0.5rem; font-size: 0.875rem;">Vue.js</span>
+                            <span style="background: hsl(var(--accent) / 0.2); padding: 0.25rem 0.75rem; border-radius: 0.5rem; font-size: 0.875rem;">Firebase</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Work Experience Section -->
+        <section id="experience">
+            <div class="container">
+                <h2>Work Experience</h2>
+                <div class="grid grid-2">
+                    <div class="paint-overlay">
+                        <h3>User Experience Designer</h3>
+                        <p style="color: hsl(var(--accent)); font-weight: 600; margin: 0.5rem 0;">Ndlondlo Studio • 2025 - Present</p>
+                        <p style="color: hsl(var(--muted-foreground));">Leading UX design initiatives, creating intuitive interfaces and conducting user research to deliver exceptional digital experiences.</p>
+                    </div>
+                    <div class="paint-overlay">
+                        <h3>Frontend Developer</h3>
+                        <p style="color: hsl(var(--accent)); font-weight: 600; margin: 0.5rem 0;">ArtifAI • 2023 - 2025</p>
+                        <p style="color: hsl(var(--muted-foreground));">Developed responsive web applications using React and modern frontend technologies, collaborating with cross-functional teams.</p>
+                    </div>
+                    <div class="paint-overlay">
+                        <h3>Junior Developer</h3>
+                        <p style="color: hsl(var(--accent)); font-weight: 600; margin: 0.5rem 0;">Tech Solutions • 2022 - 2023</p>
+                        <p style="color: hsl(var(--muted-foreground));">Built and maintained web applications, gained expertise in modern development workflows and agile methodologies.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Knowledge Section -->
+        <section id="knowledge">
+            <div class="container">
+                <h2>Knowledge & Skills</h2>
+                <div class="grid grid-2">
+                    <div class="glass-card">
+                        <h3>Frontend Development</h3>
+                        <p style="color: hsl(var(--muted-foreground)); margin: 1rem 0;">Expert in modern web technologies and frameworks</p>
+                        <div class="skill-grid">
+                            <div class="skill-circle"></div>
+                            <div class="skill-circle"></div>
+                            <div class="skill-circle"></div>
+                            <div class="skill-circle"></div>
+                            <div class="skill-circle"></div>
+                        </div>
+                    </div>
+                    <div class="glass-card">
+                        <h3>UI/UX Design</h3>
+                        <p style="color: hsl(var(--muted-foreground)); margin: 1rem 0;">Creating beautiful and functional user interfaces</p>
+                        <div class="skill-grid">
+                            <div class="skill-circle"></div>
+                            <div class="skill-circle"></div>
+                            <div class="skill-circle"></div>
+                            <div class="skill-circle"></div>
+                            <div class="skill-circle"></div>
+                        </div>
+                    </div>
+                    <div class="glass-card">
+                        <h3>Mobile Development</h3>
+                        <p style="color: hsl(var(--muted-foreground)); margin: 1rem 0;">Building cross-platform mobile applications</p>
+                        <div class="skill-grid">
+                            <div class="skill-circle"></div>
+                            <div class="skill-circle"></div>
+                            <div class="skill-circle"></div>
+                            <div class="skill-circle"></div>
+                        </div>
+                    </div>
+                    <div class="glass-card">
+                        <h3>Backend Development</h3>
+                        <p style="color: hsl(var(--muted-foreground)); margin: 1rem 0;">Server-side logic and database management</p>
+                        <div class="skill-grid">
+                            <div class="skill-circle"></div>
+                            <div class="skill-circle"></div>
+                            <div class="skill-circle"></div>
+                            <div class="skill-circle"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Education Section -->
+        <section id="education">
+            <div class="container">
+                <h2>Education</h2>
+                <div class="glass-card" style="max-width: 700px; margin: 0 auto;">
+                    <h3>Paralegal Studies</h3>
+                    <p style="color: hsl(var(--accent)); font-weight: 600; margin: 0.5rem 0;">University of Johannesburg • 2018 - 2020</p>
+                    <p style="color: hsl(var(--muted-foreground));">Developed strong analytical and research skills, understanding of legal frameworks and attention to detail.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact">
+            <div class="container">
+                <h2>Get In Touch</h2>
+                <div class="glass-card" style="max-width: 600px; margin: 0 auto; text-align: center;">
+                    <p style="font-size: 1.125rem; color: hsl(var(--muted-foreground)); margin-bottom: 2rem;">
+                        I'm always open to discussing new projects, creative ideas, or opportunities to be part of your visions.
+                    </p>
+                    <div style="display: flex; flex-direction: column; gap: 1rem; align-items: center;">
+                        <a href="mailto:mokoena_mpho@icloud.com" style="color: hsl(var(--accent)); text-decoration: none; font-size: 1.125rem;">mokoena_mpho@icloud.com</a>
+                        <a href="mailto:mokoena_mpho@arithai.com" style="color: hsl(var(--accent)); text-decoration: none; font-size: 1.125rem;">mokoena_mpho@arithai.com</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer>
+            <div class="container">
+                <p>&copy; 2025 Mpho Mokoena. All rights reserved.</p>
+            </div>
+        </footer>
+    </div>
+
+    <script>
+        // Theme Toggle
+        const themeToggle = document.getElementById('themeToggle');
+        const html = document.documentElement;
+        
+        const savedTheme = localStorage.getItem('theme') || 'light';
+        html.classList.toggle('dark', savedTheme === 'dark');
+        themeToggle.textContent = savedTheme === 'dark' ? '☀️' : '🌙';
+
+        themeToggle.addEventListener('click', () => {
+            html.classList.toggle('dark');
+            const newTheme = html.classList.contains('dark') ? 'dark' : 'light';
+            localStorage.setItem('theme', newTheme);
+            themeToggle.textContent = newTheme === 'dark' ? '☀️' : '🌙';
+        });
+
+        // Smooth Scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+        });
+
+        // Particle System
+        const canvas = document.getElementById('particles');
+        const ctx = canvas.getContext('2d');
+        let particles = [];
+        let animationFrame;
+
+        function setCanvasSize() {
+            canvas.width = window.innerWidth;
+            canvas.height = document.documentElement.scrollHeight;
+        }
+
+        setCanvasSize();
+        window.addEventListener('resize', () => {
+            setCanvasSize();
+            initParticles();
+        });
+
+        function initParticles() {
+            const particleCount = window.innerWidth < 768 ? 50 : 100;
+            particles = Array.from({ length: particleCount }, () => ({
+                x: Math.random() * canvas.width,
+                y: Math.random() * canvas.height,
+                vx: (Math.random() - 0.5) * 0.5,
+                vy: (Math.random() - 0.5) * 0.5,
+                size: Math.random() * 2 + 1,
+                opacity: Math.random() * 0.5 + 0.2,
+                isAccent: Math.random() > 0.7
+            }));
+        }
+
+        function animate() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            const isDark = html.classList.contains('dark');
+
+            particles.forEach((particle, i) => {
+                particle.x += particle.vx;
+                particle.y += particle.vy;
+
+                if (particle.x < 0) particle.x = canvas.width;
+                if (particle.x > canvas.width) particle.x = 0;
+                if (particle.y < 0) particle.y = canvas.height;
+                if (particle.y > canvas.height) particle.y = 0;
+
+                ctx.beginPath();
+                ctx.arc(particle.x, particle.y, particle.size, 0, Math.PI * 2);
+
+                if (particle.isAccent) {
+                    ctx.fillStyle = isDark 
+                        ? `rgba(255, 51, 102, ${particle.opacity * 0.8})` 
+                        : `rgba(255, 51, 102, ${particle.opacity * 0.6})`;
+                    ctx.shadowBlur = 8;
+                    ctx.shadowColor = 'rgba(255, 51, 102, 0.5)';
+                } else {
+                    ctx.fillStyle = isDark 
+                        ? `rgba(0, 0, 0, ${particle.opacity * 0.3})` 
+                        : `rgba(255, 255, 255, ${particle.opacity * 0.5})`;
+                    ctx.shadowBlur = 0;
+                }
+
+                ctx.fill();
+                ctx.shadowBlur = 0;
+
+                particles.slice(i + 1).forEach((otherParticle) => {
+                    const dx = particle.x - otherParticle.x;
+                    const dy = particle.y - otherParticle.y;
+                    const distance = Math.sqrt(dx * dx + dy * dy);
+
+                    if (distance < 150) {
+                        ctx.beginPath();
+                        ctx.moveTo(particle.x, particle.y);
+                        ctx.lineTo(otherParticle.x, otherParticle.y);
+                        const opacity = (1 - distance / 150) * (isDark ? 0.08 : 0.12);
+                        ctx.strokeStyle = isDark
+                            ? `rgba(197, 172, 142, ${opacity})`
+                            : `rgba(255, 255, 255, ${opacity})`;
+                        ctx.lineWidth = 0.5;
+                        ctx.stroke();
+                    }
+                });
+            });
+
+            animationFrame = requestAnimationFrame(animate);
+        }
+
+        initParticles();
+        animate();
+    </script>
+</body>
+</html>
