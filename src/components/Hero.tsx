@@ -1,6 +1,6 @@
 import { ChevronDown, Github, Linkedin, Mail } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import profilePhoto from '@/assets/profile-photo.png';
+import profilePhoto from '@/assets/profile-illustration.jpg';
 
 const Hero = () => {
   const scrollToSection = (href: string) => {
@@ -19,11 +19,11 @@ const Hero = () => {
       <div className="container mx-auto px-6 lg:px-8 relative z-10">
         <div className="max-w-5xl mx-auto text-center space-y-10 animate-fade-in">
           <div className="flex justify-center mb-8">
-            <div className="w-48 h-48 rounded-[2.5rem] overflow-hidden glass-card p-2">
+            <div className="w-48 h-48 rounded-[2.5rem] overflow-hidden bg-gradient-to-br from-primary/20 to-accent/10 backdrop-blur-sm p-2 border border-white/10">
               <img 
                 src={profilePhoto} 
                 alt="Mpho Mokoena" 
-                className="w-full h-full object-cover rounded-[2rem]"
+                className="w-full h-full object-cover rounded-[2rem] mix-blend-luminosity opacity-90"
               />
             </div>
           </div>
