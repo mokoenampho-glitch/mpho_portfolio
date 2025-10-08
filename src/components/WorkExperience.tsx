@@ -4,7 +4,7 @@ import { Briefcase } from 'lucide-react';
 const WorkExperience = () => {
   const experiences = [
     {
-      period: '2014 - Currently',
+      period: '2024 - Currently',
       title: 'UX/UI Engineer',
       description: 'Versatile and collaborative professional with a unique hybrid background in UI/UX design and AWS DevOps engineering. Leverages a user-centered design approach to create intuitive, accessible, and high-fidelity prototypes, while simultaneously architecting secure, scalable, and automated cloud infrastructure to deploy them. Excels at bridging the gap between design and development to drive the end-to-end delivery of data-driven, reliable, and engaging applications.',
     },
